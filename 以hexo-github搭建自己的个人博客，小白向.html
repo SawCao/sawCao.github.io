@@ -1,0 +1,617 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="个人博客适合的人群
+喜欢折腾，喜欢拥有自己独立的空间
+会使用或者想学习使用markdown语言
+愿意在网络上记录自己
+
+前期准备1. 安装Node.js安装Node.js是非常简单的事情，在官网选择对应版本下载即可(下载地址)。
+2. 安装git现在安装git也是很简单的事情，同样在官网选择对应版本即可(下载地址)。git的基本使用也较为简单，在桌面或者自己想要定位的文件夹下点击鼠标右键，如图所示">
+<meta property="og:type" content="website">
+<meta property="og:title" content="以hexo+github搭建自己的个人博客，小白向">
+<meta property="og:url" content="http://yoursite.com/以hexo-github搭建自己的个人博客，小白向.html">
+<meta property="og:site_name" content="恋爱中的曹老板">
+<meta property="og:description" content="个人博客适合的人群
+喜欢折腾，喜欢拥有自己独立的空间
+会使用或者想学习使用markdown语言
+愿意在网络上记录自己
+
+前期准备1. 安装Node.js安装Node.js是非常简单的事情，在官网选择对应版本下载即可(下载地址)。
+2. 安装git现在安装git也是很简单的事情，同样在官网选择对应版本即可(下载地址)。git的基本使用也较为简单，在桌面或者自己想要定位的文件夹下点击鼠标右键，如图所示">
+<meta property="og:image" content="http://7xrwkh.com1.z0.glb.clouddn.com/gitbash-1.png">
+<meta property="og:image" content="http://7xrwkh.com1.z0.glb.clouddn.com/gitbash-2.png">
+<meta property="og:image" content="http://7xrwkh.com1.z0.glb.clouddn.com/hexo-content.png">
+<meta property="og:image" content="http://7xrwkh.com1.z0.glb.clouddn.com/how-to-create-reposity.png">
+<meta property="og:updated_time" content="2016-12-01T05:09:46.405Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="以hexo+github搭建自己的个人博客，小白向">
+<meta name="twitter:description" content="个人博客适合的人群
+喜欢折腾，喜欢拥有自己独立的空间
+会使用或者想学习使用markdown语言
+愿意在网络上记录自己
+
+前期准备1. 安装Node.js安装Node.js是非常简单的事情，在官网选择对应版本下载即可(下载地址)。
+2. 安装git现在安装git也是很简单的事情，同样在官网选择对应版本即可(下载地址)。git的基本使用也较为简单，在桌面或者自己想要定位的文件夹下点击鼠标右键，如图所示">
+<meta name="twitter:image" content="http://7xrwkh.com1.z0.glb.clouddn.com/gitbash-1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/以hexo-github搭建自己的个人博客，小白向.html"/>
+
+
+
+
+
+  <title>
+  
+
+  
+    以hexo+github搭建自己的个人博客，小白向 | 恋爱中的曹老板
+  
+</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left  ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">恋爱中的曹老板</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">sawCao</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+  <header class="post-header">
+
+	<h2 class="post-title" itemprop="name headline">以hexo+github搭建自己的个人博客，小白向</h2>
+
+
+
+</header>
+
+    
+    
+      <h2 id="个人博客适合的人群"><a href="#个人博客适合的人群" class="headerlink" title="个人博客适合的人群"></a>个人博客适合的人群</h2><ul>
+<li>喜欢折腾，喜欢拥有自己独立的空间</li>
+<li>会使用或者想学习使用markdown语言</li>
+<li>愿意在网络上记录自己</li>
+</ul>
+<h2 id="前期准备"><a href="#前期准备" class="headerlink" title="前期准备"></a>前期准备</h2><h3 id="1-安装Node-js"><a href="#1-安装Node-js" class="headerlink" title="1. 安装Node.js"></a>1. 安装Node.js</h3><p>安装Node.js是非常简单的事情，在官网选择对应版本下载即可(<a href="https://nodejs.org/en/download/" target="_blank" rel="external">下载地址</a>)。</p>
+<h3 id="2-安装git"><a href="#2-安装git" class="headerlink" title="2. 安装git"></a>2. 安装git</h3><p>现在安装git也是很简单的事情，同样在官网选择对应版本即可(<a href="https://git-scm.com/downloads" target="_blank" rel="external">下载地址</a>)。<br>git的基本使用也较为简单，在桌面或者自己想要定位的文件夹下点击鼠标右键，如图所示。<br><br><img src="http://7xrwkh.com1.z0.glb.clouddn.com/gitbash-1.png" alt=""><br><br>git Bash 是命令行界面。<br><br>git GUI 则是图形化界面。<br><br>在此以用命令行为例。<br><br><img src="http://7xrwkh.com1.z0.glb.clouddn.com/gitbash-2.png" alt=""></p>
+<h3 id="3-安装及配置HEXO"><a href="#3-安装及配置HEXO" class="headerlink" title="3. 安装及配置HEXO"></a>3. 安装及配置HEXO</h3><p>桌面右键鼠标，点击Git Bash Here，输入以下命令即可安装</p>
+<blockquote>
+<p>npm install hexo-cli -g</p>
+</blockquote>
+<p>等待安装完成，然后输入：</p>
+<blockquote>
+<p>npm install hexo –save</p>
+</blockquote>
+<p>通过输入一下命令，检查是否安装成功</p>
+<blockquote>
+<p>hexo -v</p>
+</blockquote>
+<p>如果显示了一堆版本信息，则证明安装成功。</p>
+<p>接着在你想要安装的文件夹中，点击鼠标右键，点击Git Bash Here，输入以下命令进行初始化</p>
+<blockquote>
+<p>hexo init<br><br>npm install</p>
+</blockquote>
+<p>可以看见该文件夹目录如下：<br><img src="http://7xrwkh.com1.z0.glb.clouddn.com/hexo-content.png" alt=""></p>
+<p>接下来执行</p>
+<blockquote>
+<p>hexo g<br><br>hexo s</p>
+</blockquote>
+<p>保持Git Bash窗口不关闭，在localhost:4000网址中就能看见hexo的初始化界面。</p>
+<h3 id="4-将Hexo部署到github-pages上"><a href="#4-将Hexo部署到github-pages上" class="headerlink" title="4.将Hexo部署到github pages上"></a>4.将Hexo部署到github pages上</h3><ol>
+<li>首先，建立一个github pages项目</li>
+</ol>
+<p>点击New repository创建新项目。<br><img src="http://7xrwkh.com1.z0.glb.clouddn.com/how-to-create-reposity.png" alt=""></p>
+<ol>
+<li>配对SSH密钥</li>
+</ol>
+<p>配置Github的SSH密钥可以让本地git项目与远程的github建立联系，让我们在本地写了代码之后直接通过git操作就可以实现本地代码库与Github代码库同步。操作如下：</p>
+<ul>
+<li><p>查看是否存在SSH keys，如不存在则需创建</p>
+<blockquote>
+<p>$ cd ~/. ssh </p>
+</blockquote>
+</li>
+<li><p>不存在.ssh目录，则需创建一对新的SSH密钥</p>
+<blockquote>
+<p>ssh-keygen -t rsa -C “your_email@example.com”</p>
+</blockquote>
+</li>
+</ul>
+<p>一路按着Enter下去。</p>
+<ul>
+<li><p>将ssh密钥复制到粘贴版钟</p>
+<blockquote>
+<p>clip &lt; ~/.ssh/id_rsa.pub</p>
+</blockquote>
+</li>
+<li><p>登陆github，添加SSH</p>
+</li>
+<li>查看是否成功<blockquote>
+<p>ssh -T git@github.com</p>
+</blockquote>
+</li>
+</ul>
+<p>如果出现了Hi example你的用户名，则成功了。</p>
+<ul>
+<li>最后一步，完善个人信息<blockquote>
+<p>git config –global user.name “cnfeat”//用户名<br><br>git config –global user.email  “cnfeat@gmail.com”//填写自己的邮箱</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="5-将本地Hexo文件更新到github中"><a href="#5-将本地Hexo文件更新到github中" class="headerlink" title="5.将本地Hexo文件更新到github中"></a>5.将本地Hexo文件更新到github中</h3><ul>
+<li>复制自己github.io的https地址</li>
+<li>粘贴至hexo文件夹下_config.yml文件的”respsitory”中</li>
+<li><p>执行以下指令</p>
+<blockquote>
+<p>hexo g<br><br>hexo d</p>
+</blockquote>
+</li>
+<li><p>完成同步</p>
+</li>
+</ul>
+<h3 id="6-新建MD文章"><a href="#6-新建MD文章" class="headerlink" title="6.新建MD文章"></a>6.新建MD文章</h3><ul>
+<li><p>Git bash中输入如下命令建立新文章</p>
+<blockquote>
+<p>hexo n “你的文章名字”</p>
+</blockquote>
+</li>
+<li><p>用markdown编辑器打开该文件进行编辑</p>
+</li>
+<li>可以开着两个Git Bash，让一个一直执行hexo s命令，另一个用于新建文章，这样就能保证文章保存后立马部署到服务器上，接下来只需要同步到github上即可。</li>
+</ul>
+<h3 id="7-Hexo主题"><a href="#7-Hexo主题" class="headerlink" title="7.Hexo主题"></a>7.Hexo主题</h3><p>参考NexT的<a href="http://theme-next.iissnan.com/getting-started.html" target="_blank" rel="external">教程</a>即可</p>
+<h2 id="相关备注"><a href="#相关备注" class="headerlink" title="相关备注"></a>相关备注</h2><p>Hexo指令：<a href="https://hexo.io/zh-cn/docs/commands.html" target="_blank" rel="external">链接</a></p>
+<p>Markdown语法:<a href="http://www.jianshu.com/p/q81RER" target="_blank" rel="external">链接</a></p>
+
+    
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/babe.jpg"
+               alt="sawCao" />
+          <p class="site-author-name" itemprop="name">sawCao</p>
+          <p class="site-description motion-element" itemprop="description">一个记录总结自己coding生涯的小站~</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">11</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/sawcao" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/u/2301944292" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="649691009" target="_blank" title="Wechat">
+                  
+                    <i class="fa fa-fw fa-wechat"></i>
+                  
+                  Wechat
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/cao-rui-67" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-zhihu"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">sawCao</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

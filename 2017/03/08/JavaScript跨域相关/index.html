@@ -1,0 +1,697 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="前端,JavaScript," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="什么是跨域？12JavaScript出于安全方面的考虑，不允许跨域调用其他页面的对象。跨域指的访问不同域名（包括子域名与端口）下的对象。
+跨域资源共享 CORS （除了IE10以下的浏览器，其余均支持）CORS是一个W3C标准，全称是”跨域资源共享”（Cross-origin resource sharing）。
+
+两类请求浏览器将CORS请求分成两类：简单请求（simple request）和非">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript跨域相关的两种方案">
+<meta property="og:url" content="http://yoursite.com/2017/03/08/JavaScript跨域相关/index.html">
+<meta property="og:site_name" content="恋爱中的曹老板">
+<meta property="og:description" content="什么是跨域？12JavaScript出于安全方面的考虑，不允许跨域调用其他页面的对象。跨域指的访问不同域名（包括子域名与端口）下的对象。
+跨域资源共享 CORS （除了IE10以下的浏览器，其余均支持）CORS是一个W3C标准，全称是”跨域资源共享”（Cross-origin resource sharing）。
+
+两类请求浏览器将CORS请求分成两类：简单请求（simple request）和非">
+<meta property="og:updated_time" content="2017-03-16T07:33:23.729Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaScript跨域相关的两种方案">
+<meta name="twitter:description" content="什么是跨域？12JavaScript出于安全方面的考虑，不允许跨域调用其他页面的对象。跨域指的访问不同域名（包括子域名与端口）下的对象。
+跨域资源共享 CORS （除了IE10以下的浏览器，其余均支持）CORS是一个W3C标准，全称是”跨域资源共享”（Cross-origin resource sharing）。
+
+两类请求浏览器将CORS请求分成两类：简单请求（simple request）和非">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/03/08/JavaScript跨域相关/"/>
+
+
+
+
+
+  <title> JavaScript跨域相关的两种方案 | 恋爱中的曹老板 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">恋爱中的曹老板</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">sawCao</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/08/JavaScript跨域相关/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="sawCao">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/uploads/babe.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="恋爱中的曹老板">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="恋爱中的曹老板" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                JavaScript跨域相关的两种方案
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-08T14:05:21+08:00">
+                2017-03-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="什么是跨域？"><a href="#什么是跨域？" class="headerlink" title="什么是跨域？"></a>什么是跨域？</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">JavaScript出于安全方面的考虑，不允许跨域调用其他页面的对象。</div><div class="line">跨域指的访问不同域名（包括子域名与端口）下的对象。</div></pre></td></tr></table></figure>
+<h2 id="跨域资源共享-CORS-（除了IE10以下的浏览器，其余均支持）"><a href="#跨域资源共享-CORS-（除了IE10以下的浏览器，其余均支持）" class="headerlink" title="跨域资源共享 CORS （除了IE10以下的浏览器，其余均支持）"></a>跨域资源共享 CORS （除了IE10以下的浏览器，其余均支持）</h2><p>CORS是一个W3C标准，全称是”跨域资源共享”（Cross-origin resource sharing）。</p>
+<ol>
+<li><h3 id="两类请求"><a href="#两类请求" class="headerlink" title="两类请求"></a>两类请求</h3>浏览器将CORS请求分成两类：简单请求（simple request）和非简单请求（not-so-simple request）。<br>通常来说，除了 PUT 和 DELETE 请求以外，其他请求均为简单请求，<br>本文只介绍简单请求的CORS。</li>
+<li><h3 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h3><ul>
+<li><p>为服务器设置响应头</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">Access-Control-Allow-Origin: *              # 允许所有域名访问</div><div class="line">Access-Control-Allow-Origin: http://a.com   # 只允许所有域名访问,此种方法才能使Cookie正确上传</div><div class="line">Access-Control-Allow-Credentials #该字段可选。它的值是一个布尔值，表示是否允许发送Cookie。</div><div class="line">Access-Control-Expose-Headers #该字段可选。CORS请求时，XMLHttpRequest对象的getResponseHeader()方法只能拿到6个基本字段：Cache-Control、Content-Language、Content-Type、Expires、Last-Modified、Pragma。如果想拿到其他字段，就必须在Access-Control-Expose-Headers里面指定。</div></pre></td></tr></table></figure>
+</li>
+<li><p>如果要使用Cookie，则需要在AJAX请求中打开withCredentials属性。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">var xhr = new XMLHttpRequest();</div><div class="line">xhr.withCredentials = true;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ol>
+<a id="more"></a>
+<h2 id="JOSNP方法（所有浏览器均支持）"><a href="#JOSNP方法（所有浏览器均支持）" class="headerlink" title="JOSNP方法（所有浏览器均支持）"></a>JOSNP方法（所有浏览器均支持）</h2><p>　JSONP(JSON with Padding)是一个非官方的协议，它允许在服务器端集成Script tags返回至客户端，通过javascript callback的形式实现跨域访问。<br>　就是将json数据打包后，填充到一个容器中，然后返回给客户端。</p>
+<ol>
+<li><h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><script>标签对资源的引用是不受同源策略的约束，可以获取任何服务器上的资源。<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">//http://localhost:8081/data.js</div><div class="line">//8081端口</div><div class="line">function callback(jsondatas)&#123;</div><div class="line">    var str  = "来自8081站点的JS文件\n";</div><div class="line">        str += "参数数据:\n";</div><div class="line">        str +=  'msg = '+jsondatas.msg;</div><div class="line">    alert(str);</div><div class="line">&#125;</div><div class="line"></div><div class="line">//http://localhost/jsonp.html</div><div class="line">//80端口</div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"http://localhost:8081/data.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></div><div class="line">    $(function()&#123;</div><div class="line">            callback(&#123;'msg':'来自80站点的参数信息'&#125;);</div><div class="line">    &#125;)</div><div class="line"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p><img src="http://i1.piimg.com/567571/6264b75bd673f2a6.png&quot;" alt=""></p>
+<ol>
+<li><h3 id="创建Jsonp"><a href="#创建Jsonp" class="headerlink" title="创建Jsonp"></a>创建Jsonp</h3><ul>
+<li><p>服务器端代码（PHP）</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line">$arr =<span class="keyword">array</span>(</div><div class="line">            <span class="string">'title'</span>=&gt;<span class="string">'我是来自 http://localhost:8081/ 端口的数据'</span>,</div><div class="line">            <span class="string">'port'</span> =&gt; <span class="string">'8081'</span>,</div><div class="line">            <span class="string">'datas'</span>=&gt;<span class="keyword">array</span>(<span class="string">'one'</span>,<span class="string">'two'</span>,<span class="string">'three'</span>),</div><div class="line">        );</div><div class="line">$datas = json_encode($arr);</div><div class="line">$callback = $_GET[<span class="string">'callback'</span>];</div><div class="line"><span class="keyword">echo</span> $callback.<span class="string">"($datas)"</span>;</div><div class="line"><span class="meta">?&gt;</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>JavaScript代码实现</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></div><div class="line">        //自定义回调函数</div><div class="line">        function myCallback(result) &#123;  </div><div class="line">                 console.log(result);</div><div class="line">        &#125; </div><div class="line"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"http://localhost:8081/jsonp.php?callback=myCallback"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>jQuery代码实现</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></div><div class="line">    $(function()&#123;</div><div class="line">        var url = 'http://localhost:8081/jsonp.php?callback=?';//callback后的问号是内部自动生成的一个回调函数名,getJSON函数可自动取得相应的服务器返回函数。</div><div class="line">        $.getJSON(url,&#123;&#125;,function(data)&#123;</div><div class="line">            console.log(data);                        //服务器返回json数据</div><div class="line">        &#125;)</div><div class="line">    &#125;)</div><div class="line"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>jQuery ajax代码实现</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></div><div class="line">    $(function()&#123;</div><div class="line">        var url = 'http://localhost:8081/jsonp.php';</div><div class="line">         $.ajax(&#123;  </div><div class="line">            url:url,  </div><div class="line">            dataType:'jsonp',  </div><div class="line">            jsonp:'callback',  </div><div class="line">            success:function(result) &#123;  </div><div class="line">                console.log(result);            //服务器返回json数据</div><div class="line">            &#125;</div><div class="line">        &#125;);</div><div class="line">    &#125;)</div><div class="line"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ol>
+</script></li></ol>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/前端/" rel="tag"># 前端</a>
+          
+            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/06/关于js在本地浏览器端进行数据存储/" rel="next" title="关于localstorage的使用">
+                <i class="fa fa-chevron-left"></i> 关于localstorage的使用
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/babe.jpg"
+               alt="sawCao" />
+          <p class="site-author-name" itemprop="name">sawCao</p>
+          <p class="site-description motion-element" itemprop="description">一个记录总结自己coding生涯的小站~</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">11</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/sawcao" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/u/2301944292" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="649691009" target="_blank" title="Wechat">
+                  
+                    <i class="fa fa-fw fa-wechat"></i>
+                  
+                  Wechat
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/cao-rui-67" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-zhihu"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是跨域？"><span class="nav-number">1.</span> <span class="nav-text">什么是跨域？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#跨域资源共享-CORS-（除了IE10以下的浏览器，其余均支持）"><span class="nav-number">2.</span> <span class="nav-text">跨域资源共享 CORS （除了IE10以下的浏览器，其余均支持）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#两类请求"><span class="nav-number">2.1.</span> <span class="nav-text">两类请求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实现"><span class="nav-number">2.2.</span> <span class="nav-text">实现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JOSNP方法（所有浏览器均支持）"><span class="nav-number">3.</span> <span class="nav-text">JOSNP方法（所有浏览器均支持）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#原理"><span class="nav-number">3.1.</span> <span class="nav-text">原理</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">sawCao</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>
